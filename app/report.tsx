@@ -10,15 +10,13 @@ const report = () => {
     const [reason, setReason] = useState<number | undefined>(undefined)
 
     const handleSubmit = () => {
-        
+
     }
-
-
 
     return (
         <SafeAreaView className='mx-2'>
             <View>
-                <Text>See something suspicious? Let Fact-checkers know. Your report helps keep your democracy transparent.</Text>
+                <Text className='text-slate-600 dark:text-slate-300 text-base font-normal leading-normal'>See something suspicious? Let Fact-checkers know. Your report helps keep your democracy transparent.</Text>
             </View>
             <View className='gap-2'>
                 <Text className='font-bold text-[1.25rem]'>
@@ -56,7 +54,9 @@ const report = () => {
             <TouchableOpacity onPress={handleSubmit} className='bg-blue-700 rounded-lg p-3 items-center mt-4 mx-3'>
                 <Text className='font-bold  text-white'>Submit Report</Text>
             </TouchableOpacity>
-
+            <Link href={'/sources' as any} className='items-center mt-4 mb-8'>
+                <Text className='text-blue-700 underline'>View Trusted Sources</Text>
+            </Link>
         </SafeAreaView>
     )
 }
