@@ -1,26 +1,33 @@
-import { View, Text, Pressable, Image } from 'react-native'
+import { View, Text, Pressable, Image, Linking } from 'react-native'
 import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons'
-import { Link } from 'expo-router'
 
-const SourceCard = ({icon,title, subtitle, href,uri }: SourceCardProps) => {
+
+const SourceCard = ({ icon, title, subtitle, href, uri }: SourceCardProps) => {
+    const openBrowser = () => {
+        Linking.openURL(href as any);
+    };
     return (
         <>
-            <Link href={href as any}>
-                <Pressable className=" ">
-                    {uri && (<Image source={{ uri }} style={{ width: 32, height: 32, borderRadius: 16 }} />)}
-                    {icon && (<MaterialIcons name={icon} size={32} color="#94a3b8" />)}
-                    <View className="flex-1">
-                        <Text className="font-semibold text-black ">
-                            {title}
-                        </Text>
-                        <Text className="text-sm text-slate-500 ">
-                            {subtitle}
-                        </Text>
-                    </View>
-                    <MaterialIcons name="open-in-new" size={20} color="#94a3b8" />
-                </Pressable>
-            </Link>
+            <Pressable onPress={openBrowser} style={{ backgroundColor: "#e2e8f0", padding: 10 }} className=" flex-row  items-center gap-4 rounded-xl ">
+                {uri && (
+                    <Image
+                        source={{ uri }}
+                        style={{ width: 40, height: 40, borderRadius: 10 }}
+                    />)}
+                {icon && (
+                    <MaterialIcons name={icon} size={40} color="#94a3b8" style={{ borderRadius: 10 }} />
+                )}
+                <View className="flex-1">
+                    <Text className="font-bold text-[#0d141b] " style={{ fontSize: 15, color: '#0d141b' }}>
+                        {title}
+                    </Text>
+                    <Text className="text-sm " style={{ color: '#64748b' }}>
+                        {subtitle}
+                    </Text>
+                </View>
+                <MaterialIcons name="open-in-new" size={22} color="#94a3b8" />
+            </Pressable>
         </>
     )
 }
