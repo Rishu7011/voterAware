@@ -59,8 +59,11 @@ const report = () => {
             <Link href={'/sources' as any} className='items-center mt-4 mb-8'>
                 <Text className='text-blue-700 underline'>View Trusted Sources</Text>
             </Link>
-            <Link href={'/createAccount' as any} className='items-center mt-4 mb-8'>
-                <Text className='text-blue-700 underline'>Create Account</Text>
+            <Link href={'/SignUp' as any} className='items-center mt-4 mb-8'>
+                <Text className='text-blue-700 underline'> SignUp </Text>
+            </Link>
+            <Link href={'/SignIn' as any} className='items-center mt-4 mb-8'>
+                <Text className='text-blue-700 underline'>Sign In</Text>
             </Link>
         </SafeAreaView>
     )

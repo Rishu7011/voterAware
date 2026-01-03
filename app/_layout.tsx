@@ -2,8 +2,11 @@ import 'react-native-gesture-handler'
 import { Stack } from 'expo-router'
 import './globals.css'
 import { StatusBar } from 'react-native'
+import { AuthProvider } from '@/lib/context/AuthContext'
+import { useAuthGuard } from '@/hooks/useAuthGuard'
 
-export default function RootLayout() {
+function RootLayoutInner() {
+  useAuthGuard() // 🔥 THIS WAS MISSING
   return (
     <>
       <StatusBar hidden />
@@ -25,8 +28,15 @@ export default function RootLayout() {
           name="detail"
           options={{ headerShown: true, title: 'User Details' }}
         />
-        
       </Stack>
     </>
+  )
+}
+
+export default function RootLayout() {
+  return (
+    <AuthProvider>
+      <RootLayoutInner />
+    </AuthProvider>
   )
 }
