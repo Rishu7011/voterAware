@@ -9,7 +9,6 @@ if (Platform.OS !== 'web') {
 }
 
 const SelectField = ({ placeholder, value, onChange }: SelectFieldProps) => {
-  // 🌐 WEB — NO ui-lib
   if (Platform.OS === 'web') {
     return (
       <select

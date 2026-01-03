@@ -1,14 +1,13 @@
-import { Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { FontAwesome5, FontAwesome6, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import SourceCard from '@/components/SourceCard'
 import TimelineItem from '@/components/TimelineItem'
+import { FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons'
+import React from 'react'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 const sources = () => {
     return (
         <>
-            <View className="flex-1 bg-backgroundLight ">
+            <View className=" flex-1 bg-backgroundLight  ">
                 {/* Header */}
                 {/* <View className="flex-row items-center px-4 py-3 border-b border-gray-200 ">
                     <Pressable>
