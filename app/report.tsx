@@ -1,12 +1,3 @@
-<<<<<<< Updated upstream
-import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import SelectField from '../components/selectfield'
-import ImageUpload from '@/components/ImageUpload'
-import { Link } from 'expo-router'
-import { TextInput } from 'react-native'
-=======
 import { FilePicker } from '@/components/ui/file-picker'
 import { Picker } from '@/components/ui/picker'
 import { submitReport } from '@/lib/report.action'
@@ -22,7 +13,6 @@ import {
     ScrollView,
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
->>>>>>> Stashed changes
 
 const Report = () => {
     const [image, setImage] = useState<any[]>([])
@@ -31,36 +21,6 @@ const Report = () => {
     )
     const [description, setDescription] = useState<string>('')
 
-<<<<<<< Updated upstream
-    const handleSubmit = () => {
-        
-    }
-
-
-
-    return (
-        <SafeAreaView className='mx-2'>
-            <View>
-                <Text>See something suspicious? Let Fact-checkers know. Your report helps keep your democracy transparent.</Text>
-            </View>
-            <View className='gap-2'>
-                <Text className='font-bold text-[1.25rem]'>
-                    What did you see?
-                </Text>
-                <TextInput
-                    placeholder="Paste the link or the headline here..."
-                    multiline
-                    numberOfLines={4}
-                    className="border rounded-lg p-2 border-gray-300 "
-                />
-            </View>
-            <View className='gap-2'>
-                <Text className='font-bold text-[1.25rem]'>
-                    Evidence
-                    <Text className='font-normal text-[1rem] '> (optional) </Text>
-                </Text>
-                <ImageUpload />
-=======
     const handleSubmit = async () => {
         if (!description || !selectedValue) {
             alert("Please fill all required fields")
@@ -103,7 +63,6 @@ const Report = () => {
                         See something suspicious? Let Fact-checkers know. Your report helps
                         keep your democracy transparent.
                     </Text>
->>>>>>> Stashed changes
 
                     {/* What did you see */}
                     <View className="gap-2">
@@ -122,12 +81,6 @@ const Report = () => {
                         />
                     </View>
 
-<<<<<<< Updated upstream
-            <TouchableOpacity onPress={handleSubmit} className='bg-blue-700 rounded-lg p-3 items-center mt-4 mx-3'>
-                <Text className='font-bold  text-white'>Submit Report</Text>
-            </TouchableOpacity>
-
-=======
                     {/* Evidence */}
                     <View className="gap-2">
                         <Text className="font-bold text-[1.25rem]">
@@ -196,7 +149,6 @@ const Report = () => {
                     <Text style={styles.submitText}>Submit Report</Text>
                 </TouchableOpacity>
             </View>
->>>>>>> Stashed changes
         </SafeAreaView>
     )
 }
