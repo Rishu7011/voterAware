@@ -1,5 +1,5 @@
 import { signInWithEmail } from "@/lib/auth.actions"
-import { router } from "expo-router"
+import { Link, router } from "expo-router"
 import React, { useState } from "react"
 import {
   Alert,
@@ -26,7 +26,6 @@ const SignIn = () => {
 
     try {
       setLoading(true)
-
       const result = await signInWithEmail({ email, password })
 
       console.log("Signed in:", result)
@@ -91,7 +90,7 @@ const SignIn = () => {
             </Text>
           </Pressable>
         </View>
-        <Link href={"/report"}>report</Link>
+        <Link href={"/report" as any}>report</Link>
       </SafeAreaView>
     </ScrollView>
   )
