@@ -1,4 +1,4 @@
-import { Redirect } from "expo-router"
+import { Link, Redirect } from "expo-router"
 import { ActivityIndicator, View } from "react-native"
 import { useAuth } from "@/lib/context/AuthContext"
 
@@ -7,9 +7,15 @@ export default function Index() {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: "center" }}>
-        <ActivityIndicator size="large" />
-      </View>
+      <>
+        <View>
+          <Link href={"/report" as any}>report</Link>
+          <Link href={"/SignIn" as any}>SignIn</Link>
+          <Link href={"/SignUp" as any}>SignUp</Link>
+
+
+        </View>
+      </>
     )
   }
 

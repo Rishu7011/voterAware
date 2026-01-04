@@ -10,6 +10,7 @@ export async function signUpWithEmail({
   email,
   password,
 }: SignUpData): Promise<ApiResponse> {
+  
   const res = await fetch(`${BASE_URL}/auth/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

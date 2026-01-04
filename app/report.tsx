@@ -27,6 +27,7 @@ const Report = () => {
 
     try {
       const firstImage = image.length > 0 ? image[0] : undefined
+      console.log('Submitting report with:', { description, reason: selectedValue, image: firstImage })
 
       const result = await submitReport({
         description,
