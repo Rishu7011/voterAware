@@ -26,6 +26,8 @@ export interface SelectedFile {
 export interface FilePickerProps {
   // Core functionality
   onFilesSelected: (files: SelectedFile[]) => void;
+  placeholderColor?: string;
+
   onError?: (error: string) => void;
 
   // Configuration
@@ -47,6 +49,7 @@ export interface FilePickerProps {
   accessibilityHint?: string;
 
   variant?: ButtonVariant;
+
 }
 
 interface FilePickerMethods {
@@ -75,6 +78,8 @@ export const FilePicker = forwardRef<FilePickerMethods, FilePickerProps>(
     ref
   ) => {
     const [selectedFiles, setSelectedFiles] = useState<SelectedFile[]>([]);
+
+
 
     // Theme colors
     const backgroundColor = useColor('card');
@@ -214,13 +219,19 @@ export const FilePicker = forwardRef<FilePickerMethods, FilePickerProps>(
       <View style={[styles.container]}>
         {/* File Picker Button */}
         <Button
-          variant={variant}
+          variant="ghost"
           onPress={handlePickerPress}
           disabled={disabled}
-          style={[styles.pickerButton, style]}
-          accessibilityLabel={accessibilityLabel || `Select ${fileType} files`}
-          accessibilityHint={accessibilityHint || 'Opens file picker'}
+          style={[
+            styles.uploadBox,
+            {
+              borderColor,
+              backgroundColor,
+            },
+            style,
+          ]}
         >
+
           <View style={styles.buttonContent}>
             {fileType === 'image' ? (
               <Image
@@ -236,13 +247,19 @@ export const FilePicker = forwardRef<FilePickerMethods, FilePickerProps>(
             <Text
               style={[
                 styles.buttonText,
-                { color: disabled ? mutedTextColor : textColor },
+                {
+                  color: disabled
+                    ? mutedTextColor
+                    : selectedFiles.length === 0
+                      ? mutedTextColor   // 👈 placeholder color
+                      : textColor,       // 👈 selected text color
+                },
               ]}
             >
+
               {selectedFiles.length > 0
-                ? `${selectedFiles.length} file${
-                    selectedFiles.length > 1 ? 's' : ''
-                  } selected`
+                ? `${selectedFiles.length} file${selectedFiles.length > 1 ? 's' : ''
+                } selected`
                 : placeholder}
             </Text>
           </View>
@@ -296,6 +313,16 @@ export const FilePicker = forwardRef<FilePickerMethods, FilePickerProps>(
 FilePicker.displayName = 'FilePicker';
 
 const styles = StyleSheet.create({
+  uploadBox: {
+    borderWidth: 1,
+    borderStyle: 'dashed',
+    borderRadius: 10,
+    paddingVertical: 24,
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
   container: {
     width: '100%',
   },

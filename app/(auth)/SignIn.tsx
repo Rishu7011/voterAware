@@ -91,6 +91,7 @@ const SignIn = () => {
             </Text>
           </Pressable>
         </View>
+        <Link href={"/report"}>report</Link>
       </SafeAreaView>
     </ScrollView>
   )
