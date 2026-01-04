@@ -1,6 +1,5 @@
 import { signInWithEmail } from "@/lib/auth.actions"
-import { MaterialIcons } from "@expo/vector-icons"
-import { Link, router } from "expo-router"
+import { router } from "expo-router"
 import React, { useState } from "react"
 import {
   Alert,
@@ -12,6 +11,7 @@ import {
   View,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
+import { MaterialIcons } from "@expo/vector-icons"
 
 const SignIn = () => {
   const [email, setEmail] = useState("")
