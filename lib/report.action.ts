@@ -1,4 +1,4 @@
-const BASE_URL = "http://192.168.1.5:3000"
+const BASE_URL = "https://voter-aware-backend.vercel.app/"
 
 export async function submitReport({
   description,
