@@ -25,7 +25,7 @@ export async function submitReport({
   const res = await fetch(`${BASE_URL}/report/submit`, {
     method: "POST",
     credentials: "include",
-    body: formData, // ❗ NO headers
+    body: formData, 
   })
 
   if (!res.ok) {
