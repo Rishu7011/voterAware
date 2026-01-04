@@ -1,10 +1,11 @@
-import { Button, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import SelectField from '../components/selectfield'
 import ImageUpload from '@/components/ImageUpload'
 import { Link } from 'expo-router'
 import { TextInput } from 'react-native'
+import { FilePickerImages } from '@/components/demo/file-picker/file-picker-images'
 
 const report = () => {
     const [reason, setReason] = useState<number | undefined>(undefined)
@@ -34,7 +35,8 @@ const report = () => {
                     Evidence
                     <Text className='font-normal text-[1rem] '> (optional) </Text>
                 </Text>
-                <ImageUpload />
+                {/* <ImageUpload /> */}
+                <FilePickerImages />
 
             </View>
             <View className='gap-2'>
@@ -56,6 +58,12 @@ const report = () => {
             </TouchableOpacity>
             <Link href={'/sources' as any} className='items-center mt-4 mb-8'>
                 <Text className='text-blue-700 underline'>View Trusted Sources</Text>
+            </Link>
+            <Link href={'/SignUp' as any} className='items-center mt-4 mb-8'>
+                <Text className='text-blue-700 underline'> SignUp </Text>
+            </Link>
+            <Link href={'/SignIn' as any} className='items-center mt-4 mb-8'>
+                <Text className='text-blue-700 underline'>Sign In</Text>
             </Link>
         </SafeAreaView>
     )
