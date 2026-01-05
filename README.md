@@ -59,6 +59,45 @@ img4
 
 ---
 
+
+
+---
+
+## 📸 Application Screenshots
+
+### 🏠 Home – Empowering Informed Voters
+![Home Screen](assets/screenshots/home.png)
+
+---
+
+### 📰 Civic Update Center (Learn Section)
+![Learn Section](assets/screenshots/learn-list.png)
+
+---
+
+### 📄 Article Summary (Official Source)
+![Article Summary](assets/screenshots/article-summary.png)
+
+---
+
+### 🔍 Fact Check – Verify News Instantly
+![Fact Check](assets/screenshots/fact-check.png)
+
+---
+
+
+### 🤖 Voter Assistant (Civic AI)
+![Chatbot](assets/screenshots/chatbot.png)
+
+---
+
+### 🏛️ Election Commission Updates
+![ECI Updates](assets/screenshots/eci-updates.png)
+
+---
+
+
+
 ## 🔗 Data Sources & APIs
 
 | Source | Purpose |
@@ -72,12 +111,12 @@ img4
 
 ## 🧩 Technology Stack
 
-* **Frontend:** [React Native](https://reactnative.dev/) (Expo)
-* **Styling:** [NativeWind](https://www.nativewind.dev/) (Tailwind CSS for React Native)
-* **State Management:** [Zustand](https://github.com/pmndrs/zustand)
+* **Frontend:** <img src="https://img.icons8.com/color/48/react-native.png" width="24"/> [React Native](https://reactnative.dev/) (Expo)
+* **Styling:**  [NativeWind](https://www.nativewind.dev/) (Tailwind CSS for React Native)
+* **State Management:** img src="assets/icons/Zustand.png" [Zustand](https://github.com/pmndrs/zustand)
 * **Routing:** [Expo Router](https://docs.expo.dev/router/introduction/) (File-based routing)
 * **APIs:** REST (Public & Official)
-* **Auth:** [Better Auth](https://www.better-auth.com/) (Optional)
+* **Auth:** img src="assets/icons/BetterAuth.png" width="24"/> [Better Auth](https://www.better-auth.com/) (Optional)
 
 ---
 
