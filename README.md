@@ -1,50 +1,137 @@
-# Welcome to your Expo app 👋
+# 🗳️ VoterAware
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Empowering Informed Voters through Verified, Neutral & Official Information**
 
-## Get started
+VoterAware is a civic-tech mobile application designed to help citizens access official election information, verify viral news, and understand voting processes in a simple, trustworthy, and non-partisan way.
 
-1. Install dependencies
 
-   ```bash
-   npm install
-   ```
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🎯 Problem Statement
 
-In the output, you'll find options to open the app in a
+* **Misinformation:** Election misinformation spreads rapidly on social media platforms.
+* **Identification:** Citizens struggle to identify official vs. fake information.
+* **Fragmentation:** Access to verified election data is often fragmented across multiple portals.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+**VoterAware** solves this by centralizing official sources, providing real-time verification, and offering guided civic education.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 🚀 Key Features
 
-When you're ready, run:
+### 1️⃣ Verified Election News
+- Real-time election-related news.
+- Cross-verified from trusted public datasets.
+- **News Confidence Indicator** to help users gauge source reliability.
 
-```bash
-npm run reset-project
+img1
+
+### 2️⃣ Civic Learning Center
+- Official articles & guides sourced from **PIB**.
+- Multi-language support (**English / Hindi**).
+- Concise article summaries with clear source attribution.
+
+img2
+
+### 3️⃣ Fact Check System
+- Verify claims using the **Google Fact Check Tools API**.
+- Clear Verdicts: `TRUE` | `FALSE` | `UNVERIFIED`.
+- Source transparency with direct external links to investigations.
+
+img3
+
+### 4️⃣ Voter Assistant (AI-guided)
+- Rule-based civic chatbot.
+- Guides users through registration, voting processes, required documents, and rules.
+- Direct redirection to official government portals when action is needed.
+
+img4
+
+---
+
+## 🧠 Application Architecture
+
+
+
+### High-Level Flow
+`User` ➔ `Mobile App (React Native)` ➔ `Feature Modules` ➔ `Zustand State` ➔ `Official APIs & Public Data Sources`
+
+---
+
+## 🔗 Data Sources & APIs
+
+| Source | Purpose |
+| :--- | :--- |
+| **GDELT API** | Global election & political news aggregation |
+| **PIB RSS Feed** | Official government announcements & press releases |
+| **Google Fact Check API** | Database of verified fact-check claims |
+| **ECI Official Portals** | Authoritative election data & voter services |
+
+---
+
+## 🧩 Technology Stack
+
+* **Frontend:** [React Native](https://reactnative.dev/) (Expo)
+* **Styling:** [NativeWind](https://www.nativewind.dev/) (Tailwind CSS for React Native)
+* **State Management:** [Zustand](https://github.com/pmndrs/zustand)
+* **Routing:** [Expo Router](https://docs.expo.dev/router/introduction/) (File-based routing)
+* **APIs:** REST (Public & Official)
+* **Auth:** [Better Auth](https://www.better-auth.com/) (Optional)
+
+---
+
+## 📂 Project Structure
+
+```text
+voterAware/
+├── app/                  # Expo Router - Screen definitions
+│   ├── (tabs)/           # Tab-based navigation
+│   │   ├── home.tsx
+│   │   ├── learn.tsx
+│   │       ├── index.tsx
+│   │       ├── [id].tsx
+│   │   ├── factcheck.tsx
+│   │   └── chatbot.tsx
+│   ├── index.tsx         # Home page
+│   ├── settings.tsx      # Settings page
+│   └── _layout.tsx       # Root layout & providers
+├── src/
+│   ├── store/            # Zustand stores (useLearnStore, useFactStore)
+│   ├── services/         # API integration (gdelt.ts, pib.ts, factcheck.ts)
+│   └── components/       # Reusable UI components
+├── assets/               # Images, icons, and local datasets
+├── README.md
+└── package.json
+
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+⚖️ Ethics & Neutrality
 
-## Learn more
+    Non-Partisan: No political opinions or endorsements.
 
-To learn more about developing your project with Expo, look at the following resources:
+    Transparent: All sources are clearly disclosed for every piece of data.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+    Fact-Based: Clear disclaimers provided on unverified data.
 
-## Join the community
+    Private: No tracking of political preferences, location, or voting intent.
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+🏆 Why VoterAware Stands Out (USP)
+
+    🔍 Trust-First Design: Using only official and verified primary sources.
+
+    🧭 Guided Awareness: Focuses on user education rather than just raw data dumping.
+
+---
+
+👤 Authors
+
+Rishabh Negi & Vineet Pandey CSE Students | Civic-Tech Enthusiasts
+
+📌 Disclaimer
+
+    This application is for informational purposes only. All data is sourced from public and official records. VoterAware does not influence political opinions or electoral outcomes. Empowering informed voters strengthens democracy.
+
+⭐ If you find this project useful, consider giving it a star on GitHub!
