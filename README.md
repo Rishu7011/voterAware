@@ -113,7 +113,7 @@ img4
 
 * **Frontend:** <img src="https://img.icons8.com/color/48/react-native.png" width="24"/> [React Native](https://reactnative.dev/) (Expo)
 * **Styling:**  [NativeWind](https://www.nativewind.dev/) (Tailwind CSS for React Native)
-* **State Management:** <img src="assets/icons/zustand.png" width="24" alt="Zustand logo"/> [Zustand](https://github.com/pmndrs/zustand)
+* **State Management:** <img src="assets/icons/Zustand.png" width="24" alt="Zustand logo"/> [Zustand](https://github.com/pmndrs/zustand)
 * **Routing:** <img src="assets/icons/expo-original.svg" width="24" alt="Expo logo featuring a stylized geometric shape in dark gray"/> [Expo Router](https://docs.expo.dev/router/introduction/) (File-based routing)
 * **APIs:** REST (Public & Official)
 * **Auth:** <img src="assets/icons/BetterAuth.png" width="24" alt="BetterAuth logo"/> [Better Auth](https://www.better-auth.com/) (Optional)
