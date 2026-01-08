@@ -2,6 +2,8 @@ import { useEffect } from "react"
 import { router, useSegments } from "expo-router"
 import { useAuth } from "@/lib/context/AuthContext"
 
+const PROTECTED_ROUTES = ["report"]
+
 export function useAuthGuard() {
   const { user, loading } = useAuth()
   const segments = useSegments()
@@ -12,16 +14,18 @@ export function useAuthGuard() {
     const firstSegment = segments[0]
 
     const inAuthGroup = firstSegment === "(auth)"
-    const inTabsGroup = firstSegment === "(tabs)"
+    const isProtectedRoute = PROTECTED_ROUTES.includes(firstSegment)
 
-    // Logged in → block auth pages
-    if (user && inAuthGroup) {
-      router.replace("/(tabs)")
+    // 🚫 Not logged in → block protected routes
+    if (!user && isProtectedRoute) {
+      router.replace("/SignIn")
+      return
     }
 
-    // Logged out → block tabs
-    if (!user && inTabsGroup) {
-      router.replace("/SignIn")
+    // ✅ Logged in → block auth screens
+    if (user && inAuthGroup) {
+      router.replace("/(tabs)")
+      return
     }
   }, [user, loading, segments])
 }

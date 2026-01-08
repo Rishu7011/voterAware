@@ -12,11 +12,13 @@ import {
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { MaterialIcons } from "@expo/vector-icons"
+import { useAuth } from "@/lib/context/AuthContext"
 
 const SignIn = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
+  const {refreshSession} = useAuth()
 
   const onSubmit = async () => {
     if (!email || !password) {
@@ -26,11 +28,16 @@ const SignIn = () => {
 
     try {
       setLoading(true)
+      console.log("Signing in with:", { email })
       const result = await signInWithEmail({ email, password })
+      if (result.user) {
+        await refreshSession()
+      }
 
       console.log("Signed in:", result)
       router.replace("/") // go to home after login
     } catch (error) {
+      console.error("Sign in error:", error)
       Alert.alert(
         "Login failed",
         error instanceof Error ? error.message : "Something went wrong"

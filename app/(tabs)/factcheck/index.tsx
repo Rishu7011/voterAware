@@ -11,6 +11,7 @@ import { Feather } from "@expo/vector-icons";
 import { useState } from "react";
 import { router } from "expo-router";
 
+
 /* ---------------- CONSTANTS ---------------- */
 
 const PRIMARY = "#137fec";
@@ -18,42 +19,6 @@ const BG = "#f6f7f8";
 const CARD = "#ffffff";
 const MUTED = "#64748B";
 
-/* ---------------- TYPES ---------------- */
-
-interface FactCheckResponse {
-  claims: Claim[];
-  nextPageToken?: string;
-}
-
-interface Claim {
-  text: string;
-  claimant: string;
-  claimDate: string;
-  claimReview: ClaimReview[];
-}
-
-interface ClaimReview {
-  publisher: {
-    name: string;
-    site: string;
-  };
-  url: string;
-  title: string;
-  textualRating: string; 
-  languageCode: string;
-}
-
-type VerdictType = "TRUE" | "FALSE" | "UNVERIFIED";
-
-type FactResult = {
-  id: string;
-  verdict: VerdictType;
-  claim: string;
-  explanation: string;
-  source: string;
-  url?: string;
-  time: string;
-};
 
 /* ---------------- HELPERS ---------------- */
 

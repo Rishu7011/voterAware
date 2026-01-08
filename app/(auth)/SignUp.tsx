@@ -1,4 +1,5 @@
 import { signUpWithEmail } from '@/lib/auth.actions'
+import { useAuth } from '@/lib/context/AuthContext'
 import { MaterialIcons } from '@expo/vector-icons'
 import { router } from 'expo-router'
 import React, { useState } from 'react'
@@ -18,6 +19,7 @@ const SignUp = () => {
   const [password, setPassword] = useState('')
   const [fullName, setFullName] = useState('')
   const [loading, setLoading] = useState(false)
+  const { refreshSession } = useAuth()
 
   const validateForm = () => {
     if (!fullName.trim()) {
@@ -54,10 +56,10 @@ const SignUp = () => {
         password,
         fullName,
       })
-      console.log('Sign up result:', result)
 
       if (result.user) {
         Alert.alert('Success', 'Account created successfully!')
+        await refreshSession()
         router.replace('/') // navigate to home
       } else {
         throw new Error(result.error || 'Unexpected error')

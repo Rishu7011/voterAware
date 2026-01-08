@@ -1,4 +1,5 @@
-const BASE_URL = "https://voter-aware-backend.vercel.app/"
+const BASE_URL = "https://voter-aware-backend.vercel.app"
+import * as SecureStore from "expo-secure-store"
 
 export async function submitReport({
   description,
@@ -9,6 +10,10 @@ export async function submitReport({
   reason: string
   image?: any
 }) {
+  const token = await SecureStore.getItemAsync("session")
+  if (!token) {
+    throw new Error("User not authenticated")
+  }
   const formData = new FormData()
 
   formData.append("description", description)
@@ -24,8 +29,10 @@ export async function submitReport({
 
   const res = await fetch(`${BASE_URL}/report/submit`, {
     method: "POST",
-    credentials: "include",
-    body: formData, 
+    headers: {
+      Cookie: token,
+    },
+    body: formData,
   })
 
   if (!res.ok) {

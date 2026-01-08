@@ -1,4 +1,6 @@
-const BASE_URL = "https://voter-aware-backend.vercel.app/"
+const BASE_URL = "https://voter-aware-backend.vercel.app"
+import * as SecureStore from "expo-secure-store";
+
 
 
 
@@ -10,20 +12,27 @@ export async function signUpWithEmail({
   email,
   password,
 }: SignUpData): Promise<ApiResponse> {
-  
+
   const res = await fetch(`${BASE_URL}/auth/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name: fullName, email, password }),
-    credentials: "include", // send cookies
   });
 
+  const data = await res.json()
+  console.log("signUpWithEmail response data:", data)
+
   if (!res.ok) {
-    throw new Error("Failed to sign up");
+    throw new Error(data?.error || "Signup failed")
   }
 
-  const data = await res.json();
-  return data;
+
+  await SecureStore.setItemAsync("session", data.token)
+
+  return {
+    user: data.user,
+    token: data.token,
+  }
 }
 
 /**
@@ -32,49 +41,32 @@ export async function signUpWithEmail({
 export async function signInWithEmail({
   email,
   password,
-}: SignInData): Promise<ApiResponse> {
+}: SignInData) {
+  console.log("signInWithEmail called with:", { email })
+
   const res = await fetch(`${BASE_URL}/auth/signin`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ email, password }),
-    credentials: "include",
-  });
+  })
+
+  const data = await res.json()
+  console.log("signInWithEmail response data:", data)
 
   if (!res.ok) {
-    throw new Error("Failed to sign in");
+    throw new Error(data?.error || "Signin failed")
   }
 
-  return res.json();
-}
 
-/**
- * Sign out
- */
-export async function signOut(): Promise<ApiResponse> {
-  const res = await fetch(`${BASE_URL}/auth/signout`, {
-    method: "POST",
-    credentials: "include",
-  });
+  await SecureStore.setItemAsync("session", data.token)
 
-  if (!res.ok) {
-    throw new Error("Failed to sign out");
+  return {
+    user: data.user,
+    token: data.token,
   }
-
-  return res.json();
 }
 
-/**
- * Get current authenticated session
- */
-export async function getSession(): Promise<ApiResponse> {
-  const res = await fetch(`${BASE_URL}/api/auth/ok`, {
-    method: "GET",
-    credentials: "include",
-  });
 
-  if (!res.ok) {
-    throw new Error("Not authenticated");
-  }
 
-  return res.json();
-}

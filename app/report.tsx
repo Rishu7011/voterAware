@@ -1,9 +1,10 @@
 import { FilePicker } from '@/components/ui/file-picker'
 import { Picker } from '@/components/ui/picker'
+import { useAuth } from '@/lib/context/AuthContext'
 import { submitReport } from '@/lib/report.action'
 import { FontAwesome5 } from '@expo/vector-icons'
-import { Link } from 'expo-router'
-import React, { useState } from 'react'
+import { Link, router } from 'expo-router'
+import React, { useEffect, useState } from 'react'
 import {
   StyleSheet,
   Text,
@@ -11,6 +12,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  Button,
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -27,7 +29,6 @@ const Report = () => {
 
     try {
       const firstImage = image.length > 0 ? image[0] : undefined
-      console.log('Submitting report with:', { description, reason: selectedValue, image: firstImage })
 
       const result = await submitReport({
         description,
@@ -46,6 +47,16 @@ const Report = () => {
       alert('Failed to submit report')
     }
   }
+  
+  
+  const { logout, refreshSession } = useAuth()
+  const hadlelogout = async () => {
+     await logout()
+    router.replace("/SignIn")
+  }
+  useEffect(() => {
+    refreshSession()
+  }, [])
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -129,6 +140,13 @@ const Report = () => {
             .
           </Text>
         </View>
+        <Link href={'/SignIn' as any} >SignIN</Link>
+        
+        <View>
+          <Button title="handle logout" onPress={hadlelogout} />
+        </View>
+
+
       </ScrollView>
 
       {/* Bottom Button */}

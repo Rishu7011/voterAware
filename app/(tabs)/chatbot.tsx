@@ -13,30 +13,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 /* ======================= TYPES ======================= */
 
-type Role = "user" | "assistant";
 
-type Message = {
-  id: string;
-  role: Role;
-  text: string;
-  time: string;
-};
 
-type IntentKey =
-  | "REGISTER"
-  | "CORRECTION"
-  | "ADDRESS_CHANGE"
-  | "HOW_TO_VOTE"
-  | "POLLING_BOOTH"
-  | "DOCUMENTS"
-  | "EVM"
-  | "FAKE_NEWS"
-  | "MCC"
-  | "FIRST_TIME"
-  | "ONE_NATION"
-  | "OVERSEAS"
-  | "SENIOR"
-  | "UNKNOWN";
+
 
 /* ======================= UTIL ======================= */
 
