@@ -23,7 +23,7 @@ export async function signUpWithEmail({
   console.log("signUpWithEmail response data:", data)
 
   if (!res.ok) {
-    throw new Error(data?.error || "Signup failed")
+    throw new Error(data?.message || "Signup failed")
   }
 
 
@@ -42,7 +42,6 @@ export async function signInWithEmail({
   email,
   password,
 }: SignInData) {
-  console.log("signInWithEmail called with:", { email })
 
   const res = await fetch(`${BASE_URL}/auth/signin`, {
     method: "POST",
@@ -53,10 +52,9 @@ export async function signInWithEmail({
   })
 
   const data = await res.json()
-  console.log("signInWithEmail response data:", data)
 
   if (!res.ok) {
-    throw new Error(data?.error || "Signin failed")
+    throw new Error(data?.message || "Signin failed")
   }
 
 

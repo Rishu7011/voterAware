@@ -4,6 +4,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context"
 import { TTSProvider } from "@/src/context/TTSContext"
 import { AuthProvider } from "@/lib/context/AuthContext"
 import { useAuthGuard } from "@/hooks/useAuthGuard"
+import { ToastProvider } from "@/components/ui/toast"
 
 function RootNavigation() {
   // ✅ AuthGuard is now INSIDE AuthProvider
@@ -36,7 +37,9 @@ export default function RootLayout() {
     <AuthProvider>
       <TTSProvider>
         <SafeAreaProvider>
-          <RootNavigation />
+          <ToastProvider>
+            <RootNavigation />
+          </ToastProvider>
         </SafeAreaProvider>
       </TTSProvider>
     </AuthProvider>

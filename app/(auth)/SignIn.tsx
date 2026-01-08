@@ -13,12 +13,15 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"
 import { MaterialIcons } from "@expo/vector-icons"
 import { useAuth } from "@/lib/context/AuthContext"
+import { useToast } from "@/components/ui/toast"
+
 
 const SignIn = () => {
+  const { toast } = useToast();
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
-  const {refreshSession} = useAuth()
+  const { refreshSession } = useAuth()
 
   const onSubmit = async () => {
     if (!email || !password) {
@@ -28,21 +31,23 @@ const SignIn = () => {
 
     try {
       setLoading(true)
-      console.log("Signing in with:", { email })
       const result = await signInWithEmail({ email, password })
       if (result.user) {
+        toast({
+          title: 'Success!',
+          description: `Welcome back, ${result.user.name}!`,
+          variant: 'success',
+          duration: 3000,
+        });
+        setLoading(false)
         await refreshSession()
       }
-
-      console.log("Signed in:", result)
-      router.replace("/") // go to home after login
     } catch (error) {
-      console.error("Sign in error:", error)
-      Alert.alert(
-        "Login failed",
-        error instanceof Error ? error.message : "Something went wrong"
-      )
-    } finally {
+      toast({
+        title: 'Error',
+        description: (error as Error).message || 'Signin failed',
+        variant: 'error',
+      })
       setLoading(false)
     }
   }
@@ -80,7 +85,7 @@ const SignIn = () => {
             secureTextEntry
             style={styles.input}
           />
-
+          
           <Pressable
             onPress={onSubmit}
             disabled={loading}

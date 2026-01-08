@@ -1,3 +1,4 @@
+import { useToast } from '@/components/ui/toast'
 import { signUpWithEmail } from '@/lib/auth.actions'
 import { useAuth } from '@/lib/context/AuthContext'
 import { MaterialIcons } from '@expo/vector-icons'
@@ -20,6 +21,7 @@ const SignUp = () => {
   const [fullName, setFullName] = useState('')
   const [loading, setLoading] = useState(false)
   const { refreshSession } = useAuth()
+  const {toast} = useToast()
 
   const validateForm = () => {
     if (!fullName.trim()) {
@@ -58,18 +60,20 @@ const SignUp = () => {
       })
 
       if (result.user) {
-        Alert.alert('Success', 'Account created successfully!')
+        toast({
+          title: 'Account created successfully!',
+          variant: 'success',
+        });
         await refreshSession()
         router.replace('/') // navigate to home
       } else {
         throw new Error(result.error || 'Unexpected error')
       }
     } catch (error) {
-      console.error(error)
-      Alert.alert(
-        'Sign Up Failed',
-        error instanceof Error ? error.message : 'Something went wrong'
-      )
+      toast({
+        title: (error as Error).message || 'Signup failed',
+        variant: 'error',
+      });      
     } finally {
       setLoading(false)
     }
